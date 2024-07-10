@@ -1,10 +1,6 @@
 <h1 align=center>Jogo da Velha Simples</h1>
 <h3>Sobre o projeto</h3>
-<p>O jogo é um projeto de estudo e foi desenvolvido enquanto eu realizava o curso de java disponível no canal 
-  <a href="https://www.youtube.com/@BroCodez">Bro Code</a>.
-  Como eu achei incrível a criação de interfaces gráficas, realizei um dos projetos do curso que seria justamente a criação de um jogo da velha simples.
-  Como funcionalidade adicional ao projeto realizado no <a href="https://youtu.be/rA7tfvpkw0I?si=xlSet9bnn8LoDDNb">vídeo</a>, 
-  adicionei a função de recomeçar uma partida, pressionando a tecla enter.
+<p>O jogo é um projeto de estudo e foi desenvolvido enquanto eu estudava sobre criação de interfaces gráficas com Java Swing. Para jogar novamente sem precisar executá-lo, basta pressionar a tecla enter.
 </p>
 <div align=center>
   <img src="https://github.com/Gustavo7327/TicTacToe/assets/139409378/be9f4307-bf6f-4eec-b48d-bb3207391fef">
