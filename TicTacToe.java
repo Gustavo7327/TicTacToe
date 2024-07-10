@@ -3,23 +3,23 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class TicTacToe extends JFrame implements ActionListener{
+public class TicTacToe{
+    static JPanel panel = new JPanel();
+    static JButton[] buttons = new JButton[9];
+    static JPanel paneltitle = new JPanel(); 
+    static Random random = new Random(); 
+    static JLabel textfield = new JLabel();
+    static boolean player1turn;
 
-JPanel panel = new JPanel();
-JButton[] buttons = new JButton[9];
-JPanel paneltitle = new JPanel(); 
-Random random = new Random(); 
-JLabel textfield = new JLabel();
-boolean player1turn;
-
-    TicTacToe(){
-		this.setTitle("TicTacToeGame");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		this.setSize(700,700);
-        this.getContentPane().setBackground(new Color(50,50,50));
-        this.setLayout(new BorderLayout());
-
+    public static void main(String[] args) {
+        
+        JFrame frame = new JFrame();
+        frame.setTitle("TicTacToeGame");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setSize(700,700);
+        frame.getContentPane().setBackground(new Color(50,50,50));
+        frame.setLayout(new BorderLayout());
         textfield.setBackground(new Color(25,25,25));
         textfield.setForeground(new Color(25,255,0));
         textfield.setFont(new Font("Ink Free",Font.BOLD,45));
@@ -40,11 +40,38 @@ boolean player1turn;
             panel.add(buttons[i]);
             buttons[i].setFont(new Font("MV Boli",Font.BOLD,120));
             buttons[i].setFocusable(false);
-            buttons[i].addActionListener(this);
-            buttons[i].setBackground(Color.lightGray);
-        }
+            buttons[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+          
+                for(int i=0;i<9;i++){
+                    if(e.getSource()==buttons[i]){
+                        if(player1turn){
+                            if(buttons[i].getText()==""){
+                                buttons[i].setForeground(new Color(255,0,0));
+                                buttons[i].setText("X");
+                                player1turn=false;
+                                textfield.setText("O turn");
+                                check();
+                            }
+                        } 
+                        else {
+                            if(buttons[i].getText()==""){
+                                buttons[i].setForeground(new Color(0,0,255));
+                                buttons[i].setText("O");
+                                player1turn=true;
+                                textfield.setText("X turn");
+                                check();
+                            }
+                        }
+                    }
+                }
+            }
+                    });
+                    buttons[i].setBackground(Color.lightGray);
+                }
 
-        this.addKeyListener(new KeyListener(){
+        frame.addKeyListener(new KeyListener(){
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -70,41 +97,14 @@ boolean player1turn;
             
         });
 
-        this.add(paneltitle, BorderLayout.NORTH);
-        this.add(panel);
-        this.setVisible(true);
+        frame.add(paneltitle, BorderLayout.NORTH);
+        frame.add(panel);
+        frame.setVisible(true);
         firstTurn();
-	}
-	
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-          
-        for(int i=0;i<9;i++){
-            if(e.getSource()==buttons[i]){
-                if(player1turn){
-                    if(buttons[i].getText()==""){
-                        buttons[i].setForeground(new Color(255,0,0));
-                        buttons[i].setText("X");
-                        player1turn=false;
-                        textfield.setText("O turn");
-                        check();
-                    }
-                } 
-                else {
-                    if(buttons[i].getText()==""){
-                        buttons[i].setForeground(new Color(0,0,255));
-                        buttons[i].setText("O");
-                        player1turn=true;
-                        textfield.setText("X turn");
-                        check();
-                    }
-                }
-            }
-        }
     }
 
-    public void firstTurn(){
+
+    public static void firstTurn(){
 
         try {
             Thread.sleep(1600);
@@ -122,7 +122,7 @@ boolean player1turn;
         }
     }
     
-    public void check(){
+    public static void check(){
 
         if((buttons[0].getText()=="X") && (buttons[1].getText()=="X") && (buttons[2].getText()=="X")){
             xWins(0,1,2);
@@ -189,7 +189,7 @@ boolean player1turn;
 
     }
 
-    public void xWins(int a, int b, int c){
+    public static void xWins(int a, int b, int c){
         buttons[a].setBackground(Color.GREEN);
         buttons[b].setBackground(Color.GREEN);
         buttons[c].setBackground(Color.GREEN);
@@ -200,7 +200,7 @@ boolean player1turn;
         textfield.setText("X wins (Enter to restart)");
     }
 
-    public void oWins(int a, int b, int c){
+    public static void oWins(int a, int b, int c){
         buttons[a].setBackground(Color.GREEN);
         buttons[b].setBackground(Color.GREEN);
         buttons[c].setBackground(Color.GREEN);
